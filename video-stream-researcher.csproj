@@ -53,34 +53,20 @@
 
   <!-- 显式配置资源文件 -->
   <ItemGroup>
-    <EmbeddedResource Update="src\Resources\Strings.resx">
+    <EmbeddedResource Update="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="src\Resources\Strings.en-US.resx">
+    <EmbeddedResource Update="Resources\Strings.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="src\Resources\Strings.ru-RU.resx">
+    <EmbeddedResource Update="Resources\Strings.ru-RU.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <Compile Update="src\Resources\Strings.Designer.cs">
+    <Compile Update="Resources\Strings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <!-- 定义文件夹结构以便在解决方案资源管理器中显示 -->
-  <ItemGroup>
-    <Folder Include="src\Core\Interfaces\" />
-    <Folder Include="src\Core\Infrastructure\" />
-    <Folder Include="src\Core\Models\" />
-    <Folder Include="src\Logging\" />
-    <Folder Include="src\Services\Download\" />
-    <Folder Include="src\Services\Performance\" />
-    <Folder Include="src\Services\Preview\" />
-    <Folder Include="src\UI\Controls\" />
-    <Folder Include="src\UI\ViewModels\" />
-    <Folder Include="src\UI\Windows\" />
   </ItemGroup>
 </Project>

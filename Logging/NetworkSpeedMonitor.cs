@@ -58,7 +58,7 @@ namespace video_stream_researcher.Logs
     private IBrush? _processingTextBrush;
     
     // 缓存UI控件，减少对象创建
-    private Path? _progressLine;
+    private Avalonia.Controls.Shapes.Path? _progressLine;
     private Border? _progressTextContainer;
     private TextBlock? _progressTextBlock;
     

@@ -1,0 +1,299 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="650"
+        x:Class="video_stream_researcher.UI.StartupDialogWindow"
+        Title="欢迎使用"
+        Width="500"
+        Height="650"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        Topmost="False"
+        WindowDecorations="BorderOnly">
+
+
+
+    <Grid Background="#FF0B0B0F">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 标题区域 - 支持拖动窗口 -->
+        <Border Grid.Row="0"
+                Background="#1E3A5F"
+                BorderBrush="#4A90D9"
+                BorderThickness="0,0,0,2"
+                Padding="20,15"
+                PointerPressed="TitleBar_PointerPressed">
+            <StackPanel>
+                <TextBlock FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="#FFFFFFFF"
+                           HorizontalAlignment="Center">
+                    <Run Text="📢 "/>
+                    <Run Text="免责声明" Foreground="#FFC864" FontWeight="Bold"/>
+                    <Run Text="与"/>
+                    <Run Text="使用条款" Foreground="#4CAF50" FontWeight="Bold"/>
+                </TextBlock>
+                <TextBlock Text="使用本软件前请仔细阅读以下内容"
+                           FontSize="12"
+                           Foreground="#B8D4F0"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- 内容区域 -->
+        <Border Grid.Row="1"
+                Background="#FF222222"
+                BorderBrush="#FF555555"
+                BorderThickness="1"
+                CornerRadius="6"
+                Margin="20,15,20,5"
+                Padding="15">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="12">
+                    <!-- 风险提示 -->
+                    <Border Background="#2D2D2D"
+                            BorderBrush="#FFC864"
+                            BorderThickness="2"
+                            CornerRadius="4"
+                            Padding="12">
+                        <StackPanel>
+                            <TextBlock FontSize="14"
+                                       FontWeight="Bold"
+                                       Foreground="#FFC864"
+                                       Margin="0,0,0,8">
+                                <Run Text="⚠️ "/>
+                                <Run Text="风险提示" Background="#FFC864" Foreground="#000000" FontWeight="Bold"/>
+                            </TextBlock>
+                            <TextBlock FontSize="12"
+                                       TextWrapping="Wrap"
+                                       LineHeight="20">
+                                <Run Text="使用本软件"/>
+                                <Run Text="下载" Foreground="#FF5252" FontWeight="Bold"/>
+                                <Run Text="受"/>
+                                <Run Text="版权保护" Foreground="#FFC864" FontWeight="Bold"/>
+                                <Run Text="的内容可能"/>
+                                <Run Text="违反" Foreground="#FF5252" FontWeight="Bold"/>
+                                <Run Text="相关法律法规。用户应"/>
+                                <Run Text="自行承担" Foreground="#FF5252" FontWeight="Bold"/>
+                                <Run Text="使用本软件的所有风险和责任。"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 法律声明 -->
+                    <Border Background="#1E3A5F"
+                            BorderBrush="#4A90D9"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="12">
+                        <StackPanel>
+                            <TextBlock FontSize="14"
+                                       FontWeight="Bold"
+                                       Foreground="#4A90D9"
+                                       Margin="0,0,0,8"
+                                       TextDecorations="Underline">
+                                <Run Text="⚖️ "/>
+                                <Run Text="法律声明"/>
+                            </TextBlock>
+                            <TextBlock FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Margin="0,0,0,6"
+                                       LineHeight="18">
+                                <Run Text="1. 本工具仅用于"/>
+                                <Run Text="技术研究" Foreground="#4CAF50" FontWeight="Bold"/>
+                                <Run Text="和"/>
+                                <Run Text="学习目的" Foreground="#4CAF50" FontWeight="Bold"/>
+                                <Run Text="，"/>
+                                <Run Text="不得" Foreground="#FF5252" FontWeight="Bold"/>
+                                <Run Text="用于任何"/>
+                                <Run Text="商业用途" Foreground="#FFC864" FontWeight="Bold"/>
+                                <Run Text="."/>
+                            </TextBlock>
+                            <TextBlock FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Margin="0,0,0,6"
+                                       LineHeight="18">
+                                <Run Text="2. 请遵守相关"/>
+                                <Run Text="法律法规" Foreground="#4A90D9" FontWeight="Bold"/>
+                                <Run Text="和网站服务条款，尊重"/>
+                                <Run Text="知识产权" Foreground="#FFC864" FontWeight="Bold"/>
+                                <Run Text="."/>
+                            </TextBlock>
+                            <TextBlock FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Margin="0,0,0,6"
+                                       LineHeight="18">
+                                <Run Text="3. 视频内容版权归"/>
+                                <Run Text="原作者" Foreground="#4A90D9" FontWeight="Bold"/>
+                                <Run Text="和"/>
+                                <Run Text="平台" Foreground="#4A90D9" FontWeight="Bold"/>
+                                <Run Text="所有，下载后请在"/>
+                                <Run Text="24小时内" Foreground="#FF5252" FontWeight="Bold"/>
+                                <Run Text="删除."/>
+                            </TextBlock>
+                            <TextBlock FontSize="12"
+                                       TextWrapping="Wrap"
+                                       LineHeight="18">
+                                <Run Text="4. 开发者"/>
+                                <Run Text="不对" Foreground="#FF5252" FontWeight="Bold"/>
+                                <Run Text="用户的"/>
+                                <Run Text="违法行为" Foreground="#FF5252" FontWeight="Bold"/>
+                                <Run Text="承担任何责任."/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 使用须知 -->
+                    <Border Background="#2D2D2D"
+                            BorderBrush="#4A90D9"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="12">
+                        <StackPanel>
+                            <TextBlock FontSize="14"
+                                       FontWeight="Bold"
+                                       Foreground="#4A90D9"
+                                       Margin="0,0,0,8">
+                                <Run Text="📋 "/>
+                                <Run Text="使用须知"/>
+                            </TextBlock>
+                            <TextBlock FontSize="12"
+                                       TextWrapping="Wrap"
+                                       LineHeight="18">
+                                <Run Text="本软件仅为"/>
+                                <Run Text="技术研究" Foreground="#4CAF50" FontWeight="Bold"/>
+                                <Run Text="请在下载的"/>
+                                <Run Text="二十四小时内" Foreground="#FF5252" FontWeight="Bold"/>
+                                <Run Text="从您的计算机里"/>
+                                <Run Text="删除" Foreground="#FF5252" FontWeight="Bold"/>
+                            </TextBlock>
+                            <TextBlock FontSize="11"
+                                       TextWrapping="Wrap"
+                                       Margin="0,8,0,0"
+                                       LineHeight="16"
+                                       Foreground="#B8D4F0">
+                                <Run Text="📢 公告：此版本为第一版UI，目前"/>
+                                <Run Text="已暂时搁置" Foreground="#FFC864" FontWeight="Bold"/>
+                                <Run Text="，我会根据反馈评估是否重启（可在B站反馈）。第二版新UI正在制作中（1/10）..."/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 功能说明 -->
+                    <Border Background="#2D2D2D"
+                            BorderBrush="#4CAF50"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="12">
+                        <StackPanel>
+                            <TextBlock FontSize="14"
+                                       FontWeight="Bold"
+                                       Foreground="#4CAF50"
+                                       Margin="0,0,0,8"
+                                       TextDecorations="Underline">
+                                <Run Text="✨ "/>
+                                <Run Text="功能说明"/>
+                            </TextBlock>
+                            <TextBlock Text="• 支持多种视频流格式的解析和下载"
+                                       Foreground="#FFFFFFFF"
+                                       FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="• 使用ai辅助开发"
+                                       Foreground="#FFFFFFFF"
+                                       FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="• 支持B站登录获取高清视频"
+                                       Foreground="#FFFFFFFF"
+                                       FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock FontSize="12"
+                                       TextWrapping="Wrap">
+                                <Run Text="• 合并模式（FFmpeg ×/"/>
+                                <Run Text="Mp4Merger" Foreground="#4CAF50" FontWeight="Bold"/>
+                                <Run Text=" √）"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- 作者信息区域 -->
+        <Border Grid.Row="2"
+                Background="#1E3A5F"
+                BorderBrush="#4A90D9"
+                BorderThickness="1"
+                CornerRadius="4"
+                Margin="20,5,20,5"
+                Padding="10">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Spacing="15">
+                <TextBlock VerticalAlignment="Center">
+                    <Run Text="bili: " Foreground="#B8D4F0"/>
+                    <Run Text="yaohewoma" Foreground="#FFC864" FontWeight="Bold"/>
+                </TextBlock>
+                <TextBlock VerticalAlignment="Center">
+                    <Run Text="Github: " Foreground="#B8D4F0"/>
+                    <Run Text="github.com/yaohewoma" Foreground="#4CAF50"/>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+
+
+        <!-- 倒计时提示 -->
+        <TextBlock Grid.Row="4"
+                   x:Name="CountdownText"
+                   Text="请仔细阅读以上内容，确认按钮将在 5 秒后可用"
+                   Foreground="#B8D4F0"
+                   FontSize="12"
+                   HorizontalAlignment="Center"
+                   Margin="0,5,0,5"/>
+
+        <!-- 按钮区域 -->
+        <StackPanel Grid.Row="5"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,5,0,20"
+                    Spacing="15">
+            <Button x:Name="ConfirmButton"
+                    Content="确认(5)"
+                    Width="120"
+                    Height="36"
+                    IsEnabled="False"
+                    Click="ConfirmButton_Click">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Offset="0" Color="#4CAF50"/>
+                        <GradientStop Offset="1" Color="#2E7D32"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="ExitButton"
+                    Content="退出"
+                    Width="120"
+                    Height="36"
+                    Click="ExitButton_Click">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Offset="0" Color="#FF5252"/>
+                        <GradientStop Offset="1" Color="#C62828"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

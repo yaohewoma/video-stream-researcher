@@ -1,0 +1,184 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="using:video_stream_researcher.UI"
+        xmlns:vm="using:video_stream_researcher.ViewModels"
+        xmlns:services="using:video_stream_researcher.Services"
+        xmlns:converters="using:video_stream_researcher.UI.Converters"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="video_stream_researcher.UI.MainWindow"
+        Title="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=WindowTitle}"
+        x:DataType="vm:MainWindowViewModel">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 自定义背景图片 - 只覆盖内容区域 -->
+        <Image x:Name="backgroundImage"
+               Grid.Row="0" Grid.RowSpan="4"
+               Stretch="UniformToFill"
+               Opacity="0.75"
+               IsVisible="False"
+               IsHitTestVisible="False"
+               ZIndex="0"/>
+
+        <!-- 语言切换和视频URL -->
+        <Grid Grid.Row="0" Margin="12,12,12,0" ZIndex="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- 语言选择器 -->
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=LanguageLabel}" 
+                           VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <ComboBox x:Name="languageComboBox"
+                          Width="120"
+                          SelectedItem="{Binding SelectedLanguage}"
+                          ItemsSource="{Binding AvailableLanguages}"
+                          DisplayMemberBinding="{Binding DisplayName}"/>
+            </StackPanel>
+            
+            <TextBox x:Name="txtUrl" Text="{Binding Url, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" Margin="0,5,10,0"
+                     PlaceholderText="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=UrlPlaceholder}"/>
+            <Button x:Name="btnThemeToggle" Content="🌙" Grid.Row="2" Grid.Column="1" Width="40" Click="BtnThemeToggle_Click">
+                <ToolTip>
+                    <ToolTip.Tip>
+                        <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=TooltipToggleTheme}"/>
+                    </ToolTip.Tip>
+                </ToolTip>
+            </Button>
+        </Grid>
+
+        <!-- 保存路径 -->
+        <Grid Grid.Row="1" Margin="12,12,12,0" ZIndex="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=LabelSavePath}" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtSavePath" Text="{Binding SavePath, Mode=TwoWay}" Grid.Column="1" Margin="0,0,10,0" HorizontalAlignment="Stretch"/>
+            <Button x:Name="btnBrowse" Grid.Column="2" Width="97" Click="BtnBrowse_Click">
+                <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=ButtonBrowse}"/>
+            </Button>
+        </Grid>
+
+        <!-- 下载模式和开始下载按钮 -->
+        <StackPanel Orientation="Vertical" Grid.Row="2" Margin="12,12,12,0" VerticalAlignment="Center" ZIndex="10" Spacing="8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <RadioButton x:Name="rbDownloadAll" IsChecked="{Binding IsDownloadAll, Mode=TwoWay}" Margin="0,0,20,0">
+                        <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=RadioButtonAll}"/>
+                    </RadioButton>
+                    <RadioButton x:Name="rbDownloadNoMerge" IsChecked="{Binding IsNoMerge, Mode=TwoWay}" Margin="0,0,20,0">
+                        <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=RadioButtonNoMerge}"/>
+                    </RadioButton>
+                    <RadioButton x:Name="rbDownloadAudioOnly" IsChecked="{Binding IsAudioOnly, Mode=TwoWay}" Margin="0,0,20,0">
+                        <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=RadioButtonAudioOnly}"/>
+                    </RadioButton>
+                    <RadioButton x:Name="rbDownloadVideoOnly" IsChecked="{Binding IsVideoOnly, Mode=TwoWay}" Margin="0,0,20,0">
+                        <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=RadioButtonVideoOnly}"/>
+                    </RadioButton>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Spacing="10">
+                    <Button x:Name="btnDownload" Width="97" Click="BtnDownload_Click" IsEnabled="{Binding !IsDownloading}">
+                        <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=ButtonStartProcessing}"/>
+                    </Button>
+                    <Canvas x:Name="cancelButtonCanvas" Width="36" Height="36"
+                            HorizontalAlignment="Right" VerticalAlignment="Center"
+                            Cursor="Hand" IsVisible="False">
+                        <Path x:Name="cancelXPath"
+                              Data="M10,10 L26,26 M26,10 L10,26"
+                              Stroke="#FF5252" StrokeThickness="3"
+                              StrokeLineCap="Round"
+                              Canvas.Left="5" Canvas.Top="5"/>
+                        <ToolTip>
+                            <ToolTip.Tip>
+                                <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=TooltipCancelDownload}"/>
+                            </ToolTip.Tip>
+                        </ToolTip>
+                    </Canvas>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                <CheckBox IsChecked="{Binding PreviewEnabled, Mode=TwoWay}">
+                    <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=CheckBoxPreviewEdit}"/>
+                </CheckBox>
+                <CheckBox IsChecked="{Binding PreviewSegmentsEnabled, Mode=TwoWay}" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=TextBlockSegmentCount}" VerticalAlignment="Center" Foreground="Gray"/>
+                <TextBox Width="80"
+                         Text="{Binding PreviewSegmentsText, Mode=TwoWay}"
+                         PlaceholderText="60"
+                         IsEnabled="{Binding IsPreviewSegmentsInputEnabled}"/>
+                <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=TextBlockHlsOnly}" VerticalAlignment="Center" Foreground="Gray"/>
+                <CheckBox IsChecked="{Binding KeepOriginalFiles, Mode=TwoWay}">
+                    <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=CheckBoxKeepOriginal}"/>
+                </CheckBox>
+                <CheckBox IsChecked="{Binding AutoPreviewAfterDownload, Mode=TwoWay}">
+                    <TextBlock Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=CheckBoxAutoPreview}"/>
+                </CheckBox>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- 状态信息和网速图表（图表作为背景） -->
+        <Grid Grid.Row="3" Margin="12,12,12,12" ZIndex="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- 网速图表背景 -->
+            <Border Background="#222222"
+                    BorderThickness="1"
+                    BorderBrush="#555555"
+                    CornerRadius="5"
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+                <Canvas x:Name="speedChartCanvas"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"/>
+            </Border>
+
+            <!-- 当前速度文本 -->
+            <TextBlock x:Name="speedText"
+                       Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=InitialSpeedText}"
+                       Foreground="#4CAF50"
+                       FontSize="12"
+                       Grid.Row="0"
+                       Margin="0,0,0,5"
+                       FontWeight="Bold"/>
+
+            <!-- 状态文本 -->
+            <TextBlock x:Name="statusText" Text="{Binding LanguageTag, Converter={x:Static converters:LocalizationConverter.Instance}, ConverterParameter=StatusReady}" Grid.Row="0" Margin="0,0,0,5" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FF4CAF50" FontWeight="Bold"/>
+
+            <!-- 状态日志，背景半透明 -->
+            <ScrollViewer x:Name="statusScrollViewer" Grid.Row="1"
+                          HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
+                          Background="Transparent" BorderThickness="1" BorderBrush="Gray"
+                          AllowAutoHide="False">
+                <StackPanel x:Name="statusContainer"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                            Background="Transparent" Margin="5,0,5,0"/>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

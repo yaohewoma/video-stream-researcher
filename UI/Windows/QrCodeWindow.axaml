@@ -1,0 +1,100 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="480"
+        x:Class="video_stream_researcher.UI.QrCodeWindow"
+        Title="B站登录二维码"
+        Width="350"
+        Height="480"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="请使用手机B站客户端扫描以下二维码"
+                   FontSize="14"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,10"/>
+
+        <Border Grid.Row="1"
+                x:Name="QrCodeBorder"
+                Background="White"
+                BorderBrush="Gray"
+                BorderThickness="2"
+                Padding="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <Grid>
+                <Image x:Name="QrCodeImage"
+                       Width="280"
+                       Height="280"
+                       Stretch="Uniform"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+
+                <!-- 成功遮罩层 -->
+                <Border x:Name="SuccessOverlay"
+                        Background="#8000FF00"
+                        IsVisible="False"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                    <TextBlock Text="✓ 登录成功"
+                               FontSize="36"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+
+                <!-- 失败遮罩层 -->
+                <Border x:Name="FailedOverlay"
+                        Background="#80FF0000"
+                        IsVisible="False"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                    <TextBlock Text="✗ 登录失败"
+                               FontSize="36"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- 状态文本 -->
+        <TextBlock Grid.Row="2"
+                   x:Name="StatusText"
+                   Text="等待扫码..."
+                   FontSize="14"
+                   Foreground="Orange"
+                   HorizontalAlignment="Center"
+                   Margin="0,10,0,5"/>
+
+        <!-- 提示信息 -->
+        <TextBlock Grid.Row="3"
+                   x:Name="TipText"
+                   Text="扫码后请在手机上确认登录"
+                   FontSize="12"
+                   Foreground="Gray"
+                   HorizontalAlignment="Center"
+                   TextWrapping="Wrap"
+                   Margin="0,0,0,0"/>
+
+        <!-- 右键菜单 -->
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem x:Name="RefreshQrCodeMenuItem" Header="刷新二维码"/>
+                <MenuItem x:Name="CloseWindowMenuItem" Header="关闭窗口"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+    </Grid>
+</Window>

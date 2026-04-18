@@ -1,0 +1,126 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#E3F2FD', 'primaryTextColor': '#1565C0', 'primaryBorderColor': '#1976D2', 'lineColor': '#424242', 'secondaryColor': '#E8F5E9', 'tertiaryColor': '#FFF3E0', 'fontFamily': 'Inter, Microsoft YaHei, sans-serif', 'fontSize': '14px'}}}%%
+
+flowchart TB
+    subgraph UI["🖥️ 表示层"]
+        direction TB
+        MW[MainWindow<br/>主窗口]
+        QW[QrCodeWindow<br/>二维码窗口]
+        PW[PreviewPlayerWindow<br/>预览窗口]
+        RSB[RangeSeekBar<br/>范围选择条]
+    end
+
+    subgraph VM["📱 视图模型层"]
+        MVM[MainWindowViewModel<br/>主视图模型]
+    end
+
+    subgraph AF["⚙️ 应用流程层"]
+        DFM[DownloadFlowManager<br/>下载流程管理器]
+    end
+
+    subgraph SV["🔧 服务层"]
+        direction TB
+        DM[DownloadManagerV2<br/>下载管理器]
+        VP[VideoParserWrapper<br/>视频解析器]
+        CM[ConfigManager<br/>配置管理器]
+        BLS[BilibiliLoginServiceWrapper<br/>B站登录服务]
+        DIS[DownloadIndexService<br/>下载索引服务]
+        PS[PreviewService<br/>预览服务]
+    end
+
+    subgraph IF["📋 接口层"]
+        direction TB
+        IDM[IDownloadManager]
+        IDFM[IDownloadFlowManager]
+        ICP[IConfigManager]
+        ILP[ILogManager]
+        INM[INetworkSpeedMonitor]
+        IVP[IVideoParser]
+        IBL[IBilibiliLoginService]
+        IDIS[IDownloadIndexService]
+    end
+
+    subgraph MD["📦 模型层"]
+        direction TB
+        AC[AppConfig<br/>应用配置]
+        DO[DownloadOptions<br/>下载选项]
+        VI[VideoInfo<br/>视频信息]
+        LE[LogEntry<br/>日志条目]
+    end
+
+    subgraph LG["📝 日志层"]
+        direction TB
+        LM[LogManager<br/>日志管理器]
+        NSM[NetworkSpeedMonitor<br/>网速监控器]
+    end
+
+    subgraph INF["🏗️ 基础设施层"]
+        DIC[DependencyInjectionConfig<br/>依赖注入配置]
+    end
+
+    %% 依赖注入关系
+    DIC -->|注册| IDM
+    DIC -->|注册| IDFM
+    DIC -->|注册| ICP
+    DIC -->|注册| ILP
+    DIC -->|注册| INM
+    DIC -->|注册| IVP
+    DIC -->|注册| IBL
+    DIC -->|注册| IDIS
+
+    %% 接口实现关系
+    IDM -->|实现| DM
+    IDFM -->|实现| DFM
+    ICP -->|实现| CM
+    ILP -->|实现| LM
+    INM -->|实现| NSM
+    IVP -->|实现| VP
+    IBL -->|实现| BLS
+    IDIS -->|实现| DIS
+
+    %% UI 到 ViewModel
+    MW -->|DataContext| MVM
+    MW -->|显示| QW
+    MW -->|打开| PW
+    MW -->|包含| RSB
+
+    %% ViewModel 到服务
+    MVM -->|调用| DFM
+    MVM -->|调用| CM
+    MVM -->|调用| BLS
+    MVM -->|使用| LM
+    MVM -->|使用| NSM
+
+    %% 流程管理器到服务
+    DFM -->|使用| DM
+    DFM -->|使用| VP
+    DFM -->|使用| DIS
+
+    %% 服务到模型
+    DM -->|使用| DO
+    DM -->|使用| VI
+    VP -->|返回| VI
+    CM -->|管理| AC
+    LM -->|创建| LE
+
+    %% 日志层到UI
+    LM -->|更新| MW
+    NSM -->|更新| MW
+
+    %% 样式定义 - 使用更现代的颜色
+    classDef uiStyle fill:#E3F2FD,stroke:#1976D2,stroke-width:2px,color:#0D47A1
+    classDef vmStyle fill:#E8F5E9,stroke:#388E3C,stroke-width:2px,color:#1B5E20
+    classDef flowStyle fill:#FFF3E0,stroke:#F57C00,stroke-width:2px,color:#E65100
+    classDef serviceStyle fill:#FCE4EC,stroke:#C2185B,stroke-width:2px,color:#880E4F
+    classDef interfaceStyle fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,stroke-dasharray: 5 5,color:#4A148C
+    classDef modelStyle fill:#E0F2F1,stroke:#00796B,stroke-width:2px,color:#004D40
+    classDef logStyle fill:#FFF8E1,stroke:#FBC02D,stroke-width:2px,color:#F57F17
+    classDef infraStyle fill:#ECEFF1,stroke:#455A64,stroke-width:2px,color:#263238
+
+    class MW,QW,PW,RSB uiStyle
+    class MVM vmStyle
+    class DFM flowStyle
+    class DM,VP,CM,BLS,DIS,PS serviceStyle
+    class IDM,IDFM,ICP,ILP,INM,IVP,IBL,IDIS interfaceStyle
+    class AC,DO,VI,LE modelStyle
+    class LM,NSM logStyle
+    class DIC infraStyle

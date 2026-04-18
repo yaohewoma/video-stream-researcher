@@ -1,0 +1,16 @@
+# 编译输出
+bin/
+obj/
+
+# 调试文件
+*.pdb
+
+# IDE 文件
+.vs/
+.vscode/
+*.user
+*.suo
+
+# 其他临时文件
+*.log
+*.tmp

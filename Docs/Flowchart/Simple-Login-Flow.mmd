@@ -1,0 +1,50 @@
+%% 简化版B站登录流程
+%% 使用 Mermaid 语法
+
+flowchart TB
+    Start([开始]) --> Input[输入 'bili']
+    
+    Input --> CheckLoggedIn{已经登录?}
+    
+    CheckLoggedIn -->|是| Logout[自动登出]
+    CheckLoggedIn -->|否| GenerateQR
+    
+    Logout --> GenerateQR[生成二维码]
+    
+    GenerateQR --> ShowWindow[弹出二维码窗口]
+    
+    ShowWindow --> WaitScan[等待用户扫码]
+    
+    WaitScan --> Scanned{扫码状态}
+    
+    Scanned -->|已扫码| WaitConfirm[等待手机确认]
+    Scanned -->|超时/取消| Failed[登录失败]
+    
+    WaitConfirm --> Confirm{确认结果}
+    
+    Confirm -->|确认登录| Success[登录成功]
+    Confirm -->|取消| Failed
+    Confirm -->|超时| Failed
+    
+    Success --> CloseWindow[关闭二维码窗口]
+    Success --> ShowName[显示用户名]
+    
+    Failed --> CloseWindow
+    Failed --> ShowError[显示错误信息]
+    
+    CloseWindow --> End([结束])
+    ShowError --> End
+    ShowName --> End
+
+    %% 样式定义
+    classDef startEnd fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
+    classDef process fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    classDef decision fill:#FF9800,stroke:#EF6C00,stroke-width:2px,color:#fff
+    classDef success fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
+    classDef error fill:#F44336,stroke:#C62828,stroke-width:2px,color:#fff
+    
+    class Start,End startEnd
+    class Input,Logout,GenerateQR,ShowWindow,WaitScan,WaitConfirm,CloseWindow,ShowName,ShowError process
+    class CheckLoggedIn,Scanned,Confirm decision
+    class Success success
+    class Failed error

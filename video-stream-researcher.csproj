@@ -1,0 +1,77 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>14.0</LangVersion>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <UseWPF>true</UseWPF>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- 单文件发布配置（自包含，无需目标机器安装运行库） -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishTrimmed>false</PublishTrimmed>
+    <!-- 启用压缩减小文件体积 -->
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <!-- 包含原生库到单文件中 -->
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+    <!-- 资源文件配置 -->
+    <NeutralLanguage>zh-CN</NeutralLanguage>
+    <SatelliteResourceLanguages>zh-CN;en-US;ru-RU</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.0.0-rc1" />
+    <PackageReference Include="Avalonia.Controls.ColorPicker" Version="12.0.0-rc1" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.0.0-rc1" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.0.0-rc1" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.0.0-rc1" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Include="Avalonia.Diagnostics" Version="11.3.12">
+      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xaml.Behaviors.Avalonia" Version="12.0.0-rc1" />
+    <!-- 添加原项目使用的依赖项 -->
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <!-- 添加依赖注入库 -->
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0-preview.3.25171.5" />
+    <!-- 添加ReactiveUI库 -->
+    <PackageReference Include="ReactiveUI" Version="19.5.41" />
+    <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Libraries\Mp4Merger.Core\Mp4Merger.Core.csproj" />
+    <ProjectReference Include="Libraries\VideoStreamFetcher\VideoStreamFetcher.csproj" />
+    <ProjectReference Include="Libraries\VideoPreviewer\VideoPreviewer.csproj" />
+  </ItemGroup>
+
+  <!-- 显式配置资源文件 -->
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Strings.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Strings.ru-RU.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <Compile Update="Resources\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <!-- 排除 Libraries 文件夹中的源代码，防止与项目引用冲突 -->
+  <ItemGroup>
+    <Compile Remove="Libraries\**\*.cs" />
+  </ItemGroup>
+</Project>

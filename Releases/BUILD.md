@@ -14,9 +14,9 @@
 
 ### Option 1: Visual Studio 2022 (Recommended)
 
-1. Open `video-stream-researcher.sln` solution file
+1. Open `video-stream-researcher.csproj` project file
 2. Select `Release` configuration
-3. Right-click solution → Build Solution
+3. Build → Build Solution
 4. Or use Publish feature for single-file executable
 
 ### Option 2: Command Line
@@ -27,10 +27,10 @@ git clone https://github.com/yaohewoma/video-stream-researcher.git
 cd video-stream-researcher
 
 # Restore dependencies
-dotnet restore video-stream-researcher.sln
+dotnet restore
 
-# Build solution
-dotnet build video-stream-researcher.sln -c Release
+# Build project
+dotnet build -c Release
 
 # Publish single-file version
 dotnet publish video-stream-researcher.csproj -c Release -r win-x64 \
@@ -44,7 +44,6 @@ dotnet publish video-stream-researcher.csproj -c Release -r win-x64 \
 
 ```
 video-stream-researcher/
-├── video-stream-researcher.sln       # Solution file
 ├── video-stream-researcher.csproj    # Main project
 ├── Core/                             # Core interfaces and models
 ├── Logging/                          # Logging system

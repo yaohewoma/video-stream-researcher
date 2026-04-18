@@ -14,9 +14,9 @@
 
 ### 方式 1: Visual Studio 2022（推荐）
 
-1. 打开 `video-stream-researcher.sln` 解决方案文件
+1. 打开 `video-stream-researcher.csproj` 项目文件
 2. 选择 `Release` 配置
-3. 右键解决方案 → 生成解决方案
+3. 生成 → 生成解决方案
 4. 或使用发布功能生成单文件可执行程序
 
 ### 方式 2: 命令行
@@ -27,10 +27,10 @@ git clone https://github.com/yaohewoma/video-stream-researcher.git
 cd video-stream-researcher
 
 # 还原依赖
-dotnet restore video-stream-researcher.sln
+dotnet restore
 
-# 编译解决方案
-dotnet build video-stream-researcher.sln -c Release
+# 编译项目
+dotnet build -c Release
 
 # 发布单文件版本
 dotnet publish video-stream-researcher.csproj -c Release -r win-x64 \
@@ -44,7 +44,6 @@ dotnet publish video-stream-researcher.csproj -c Release -r win-x64 \
 
 ```
 video-stream-researcher/
-├── video-stream-researcher.sln       # 解决方案文件
 ├── video-stream-researcher.csproj    # 主项目
 ├── Core/                             # 核心接口和模型
 ├── Logging/                          # 日志系统

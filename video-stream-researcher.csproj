@@ -18,6 +18,7 @@
     <!-- 包含原生库到单文件中 -->
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <!-- 资源文件配置 -->
     <NeutralLanguage>zh-CN</NeutralLanguage>
     <SatelliteResourceLanguages>zh-CN;en-US;ru-RU</SatelliteResourceLanguages>
@@ -49,6 +50,7 @@
     <ProjectReference Include="Libraries\Mp4Merger.Core\Mp4Merger.Core.csproj" />
     <ProjectReference Include="Libraries\VideoStreamFetcher\VideoStreamFetcher.csproj" />
     <ProjectReference Include="Libraries\VideoPreviewer\VideoPreviewer.csproj" />
+    <ProjectReference Include="Libraries\NativeVideoProcessor\NativeVideoProcessor.csproj" />
   </ItemGroup>
 
   <!-- 显式配置资源文件 -->
@@ -68,5 +70,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <!-- 排除自动生成的 AssemblyAttributes.cs 文件防止重复编译 -->
+  <ItemGroup>
+    <Compile Remove="Libraries\**\obj\**\*.AssemblyAttributes.cs" />
+    <Compile Remove="obj\**\*.AssemblyAttributes.cs" />
+  </ItemGroup>
+
+  <!-- 排除 Libraries 文件夹中的所有源代码文件，防止与项目引用冲突 -->
+  <ItemGroup>
+    <Compile Remove="Libraries\**\*.cs" />
   </ItemGroup>
 </Project>

@@ -8,81 +8,71 @@
 
 - Windows 10/11 64位
 - .NET 10.0 SDK 或更高版本
-- Visual Studio 2022 或 VS Code
+- Visual Studio 2022（推荐）或 VS Code
 
-## 项目结构
+## 快速开始
 
-```
-video-stream-researcher/
-├── video-stream-researcher.csproj    # 主项目文件
-├── Program.cs                        # 入口点
-├── Core/                             # 核心接口和模型
-├── Logging/                          # 日志系统
-├── Resources/                        # 多语言资源文件
-├── Services/                         # 业务服务
-├── UI/                               # Avalonia UI
-├── Libraries/                        # 外部库
-│   ├── Mp4Merger.Core/              # MP4合并库
-│   ├── VideoStreamFetcher/          # 视频下载库
-│   ├── VideoPreviewer/              # 视频预览库
-│   └── NativeVideoProcessor/        # 原生视频处理
-└── ...
-```
+### 方式 1: Visual Studio 2022（推荐）
 
-## 编译步骤
+1. 打开 `video-stream-researcher.sln` 解决方案文件
+2. 选择 `Release` 配置
+3. 右键解决方案 → 生成解决方案
+4. 或使用发布功能生成单文件可执行程序
 
-### 1. 克隆仓库
+### 方式 2: 命令行
 
 ```bash
+# 克隆仓库
 git clone https://github.com/yaohewoma/video-stream-researcher.git
 cd video-stream-researcher
-```
 
-### 2. 还原依赖
+# 还原依赖
+dotnet restore video-stream-researcher.sln
 
-```bash
-dotnet restore
-```
+# 编译解决方案
+dotnet build video-stream-researcher.sln -c Release
 
-### 3. 编译 Debug 版本
-
-```bash
-dotnet build
-```
-
-### 4. 发布单文件版本
-
-```bash
-dotnet publish -c Release -r win-x64 --self-contained true \
+# 发布单文件版本
+dotnet publish video-stream-researcher.csproj -c Release -r win-x64 \
+  --self-contained true \
   -p:PublishSingleFile=true \
   -p:EnableCompressionInSingleFile=true \
   -o ./publish
 ```
 
-### 5. 编译输出
+## 项目结构
 
-编译后的单文件可执行程序将位于：
 ```
-publish/video-stream-researcher.exe
+video-stream-researcher/
+├── video-stream-researcher.sln       # 解决方案文件
+├── video-stream-researcher.csproj    # 主项目
+├── Core/                             # 核心接口和模型
+├── Logging/                          # 日志系统
+├── Resources/                        # 多语言资源
+├── Services/                         # 业务服务
+├── UI/                               # Avalonia UI
+├── Libraries/                        # 外部库
+│   ├── Mp4Merger.Core/
+│   ├── VideoStreamFetcher/
+│   ├── VideoPreviewer/
+│   └── NativeVideoProcessor/
+└── ...
 ```
 
 ## 配置说明
 
 项目已配置为：
-- ✅ 单文件发布（所有依赖打包到一个 exe）
-- ✅ 自包含（无需目标机器安装 .NET 运行库）
-- ✅ 启用压缩（减小文件体积）
+- ✅ 单文件发布
+- ✅ 自包含部署
+- ✅ 启用压缩
 - ✅ 支持 Windows 10/11 64位
 
-## 注意事项
+## 编译输出
 
-1. 首次编译可能需要下载 NuGet 包，请确保网络连接正常
-2. 如果遇到类型冲突错误，请清理解决方案后重新编译：
-   ```bash
-   dotnet clean
-   dotnet build
-   ```
-3. 发布版本会自动包含所有必要的依赖库
+编译后的可执行程序位于：
+```
+publish/video-stream-researcher.exe
+```
 
 ## 技术栈
 

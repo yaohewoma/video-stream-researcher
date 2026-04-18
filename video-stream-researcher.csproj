@@ -46,9 +46,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Mp4Merger.Core\Mp4Merger.Core.csproj" />
-    <ProjectReference Include="..\src\VideoStreamFetcher\VideoStreamFetcher.csproj" />
-    <ProjectReference Include="..\src\VideoPreviewer\VideoPreviewer.csproj" />
+    <ProjectReference Include="Libraries\Mp4Merger.Core\Mp4Merger.Core.csproj" />
+    <ProjectReference Include="Libraries\VideoStreamFetcher\VideoStreamFetcher.csproj" />
+    <ProjectReference Include="Libraries\VideoPreviewer\VideoPreviewer.csproj" />
   </ItemGroup>
 
   <!-- 显式配置资源文件 -->

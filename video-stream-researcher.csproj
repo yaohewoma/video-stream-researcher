@@ -69,4 +69,9 @@
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
   </ItemGroup>
+
+  <!-- 排除 Libraries 文件夹中的源代码，防止与项目引用冲突 -->
+  <ItemGroup>
+    <Compile Remove="Libraries\**\*.cs" />
+  </ItemGroup>
 </Project>

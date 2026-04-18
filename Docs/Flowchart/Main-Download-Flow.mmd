@@ -1,0 +1,98 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#E3F2FD', 'primaryTextColor': '#1565C0', 'primaryBorderColor': '#1976D2', 'lineColor': '#424242', 'secondaryColor': '#E8F5E9', 'tertiaryColor': '#FFF3E0', 'fontFamily': 'Inter, Microsoft YaHei, sans-serif', 'fontSize': '14px'}}}%%
+
+flowchart TB
+    Start([开始]) --> Init[初始化应用]
+    Init --> Ready[就绪状态]
+    Ready --> InputURL[输入视频URL]
+    
+    InputURL --> CheckBili{URL = 'bili'?}
+    CheckBili -->|是| StartLogin[启动B站登录流程]
+    CheckBili -->|否| CheckCustom{URL = '自定义背景'?}
+    
+    CheckCustom -->|是| SelectBg[选择背景图片]
+    CheckCustom -->|否| SelectPath[选择保存路径]
+    
+    SelectBg --> Ready
+    SelectPath --> SelectOptions[选择下载选项]
+    
+    SelectOptions --> ClickDownload[点击"开始处理"]
+    ClickDownload --> ShowCancel[显示取消按钮]
+    
+    ShowCancel --> ExecuteFlow{执行下载流程}
+    
+    subgraph DownloadFlow["下载流程详情"]
+        direction TB
+        
+        DF1[1. 构建DownloadOptions] --> DF2[2. 创建报告器]
+        DF2 --> DF3[3. 调用ExecuteDownloadAsync]
+        
+        DF3 --> CheckDuplicate{检查重复任务}
+        CheckDuplicate -->|重复| SkipDownload[跳过重复请求]
+        CheckDuplicate -->|新任务| CheckExisting{检查已存在}
+        
+        CheckExisting -->|已存在| CheckConfirm{是否已确认}
+        CheckConfirm -->|未确认| NeedConfirm[需要用户确认]
+        CheckConfirm -->|已确认| ParseVideo[解析视频信息]
+        
+        CheckExisting -->|不存在| ParseVideo
+        
+        ParseVideo --> CheckFile{检查文件存在}
+        CheckFile -->|存在| FileExists[文件已存在]
+        CheckFile -->|不存在| DownloadVideo[下载视频]
+        
+        DownloadVideo --> MergeAV{需要合并?}
+        MergeAV -->|是| MergeProcess[合并音视频]
+        MergeAV -->|否| SaveFiles[保存文件]
+        
+        MergeProcess --> SaveFiles
+        SaveFiles --> RecordIndex[记录下载索引]
+        RecordIndex --> Complete[下载完成]
+    end
+    
+    ExecuteFlow --> DownloadFlow
+    
+    DownloadFlow --> CheckResult{处理结果}
+    
+    CheckResult -->|成功&需确认| SetConfirm[设置确认模式]
+    SetConfirm --> WaitConfirm[等待用户确认]
+    WaitConfirm --> ClickDownload
+    
+    CheckResult -->|成功| HideCancel[隐藏取消按钮]
+    CheckResult -->|失败| HideCancel
+    CheckResult -->|取消| HideCancel
+    
+    HideCancel --> CheckPreview{启用预览?}
+    CheckPreview -->|是| OpenPreview[打开预览窗口]
+    CheckPreview -->|否| End([结束])
+    
+    OpenPreview --> End
+    
+    SkipDownload --> HideCancel
+    FileExists --> HideCancel
+    NeedConfirm --> SetConfirm
+    
+    StartLogin --> ShowQR[显示二维码窗口]
+    ShowQR --> WaitScan[等待扫码]
+    WaitScan --> ScanResult{扫码结果}
+    ScanResult -->|成功| LoginSuccess[登录成功]
+    ScanResult -->|失败| LoginFailed[登录失败]
+    LoginSuccess --> Ready
+    LoginFailed --> Ready
+    
+    %% 样式定义 - 现代化配色
+    classDef startEnd fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
+    classDef process fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    classDef decision fill:#FF9800,stroke:#EF6C00,stroke-width:2px,color:#fff
+    classDef userAction fill:#00BCD4,stroke:#00838F,stroke-width:2px,color:#fff
+    classDef subProcess fill:#9C27B0,stroke:#6A1B9A,stroke-width:2px,color:#fff
+    classDef success fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
+    classDef error fill:#F44336,stroke:#C62828,stroke-width:2px,color:#fff
+    classDef warning fill:#FF9800,stroke:#EF6C00,stroke-width:2px,color:#fff
+    
+    class Start,End startEnd
+    class Init,Ready,SelectPath,SelectOptions,ShowCancel,HideCancel,ExecuteFlow process
+    class CheckBili,CheckCustom,CheckDuplicate,CheckExisting,CheckConfirm,CheckFile,MergeAV,CheckResult,CheckPreview,ScanResult decision
+    class InputURL,ClickDownload,SelectBg userAction
+    class DownloadFlow subProcess
+    class LoginSuccess,Complete success
+    class LoginFailed,SkipDownload error

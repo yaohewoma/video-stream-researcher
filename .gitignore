@@ -1,0 +1,38 @@
+# 源代码文件（闭源发布）
+*.cs
+*.csproj
+*.sln
+*.axaml
+*.axaml.cs
+*.xaml
+*.xaml.cs
+*.resx
+*.settings
+
+# 源代码目录
+UI/
+Controls/
+ViewModels/
+Models/
+Services/
+Logs/
+Interfaces/
+Utils/
+src/
+
+# 编译输出（除了发布目录）
+bin/
+obj/
+
+# 调试文件
+*.pdb
+
+# IDE 文件
+.vs/
+.vscode/
+*.user
+*.suo
+
+# 其他
+*.log
+*.tmp

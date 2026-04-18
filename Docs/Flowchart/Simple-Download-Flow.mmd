@@ -1,0 +1,55 @@
+%% 简化版下载流程 - 核心逻辑一目了然
+%% 使用 Mermaid 语法
+
+flowchart TB
+    Start([开始]) --> Input[输入视频URL]
+    
+    Input --> CheckBili{是B站视频?}
+    
+    CheckBili -->|是| CheckLogin{已登录B站?}
+    CheckBili -->|否| CheckFile
+    
+    CheckLogin -->|否| ShowLogin[显示登录提示]
+    CheckLogin -->|是| CheckFile
+    
+    ShowLogin --> Input
+    
+    CheckFile{文件已存在?} -->|是| ShowExist[显示: 文件已存在]
+    CheckFile -->|否| Parse[解析视频信息]
+    
+    ShowExist --> Input
+    
+    Parse --> GetStream[获取视频/音频流地址]
+    
+    GetStream --> SelectOption{选择下载模式}
+    
+    SelectOption -->|完整视频| DownloadBoth[下载视频+音频]
+    SelectOption -->|仅音频| DownloadAudio[只下载音频]
+    SelectOption -->|仅视频| DownloadVideo[只下载视频]
+    
+    DownloadBoth --> NeedMerge{需要合并?}
+    NeedMerge -->|是| Merge[合并音视频]
+    NeedMerge -->|否| Save
+    
+    Merge --> Save[保存到本地]
+    DownloadAudio --> Save
+    DownloadVideo --> Save
+    
+    Save --> Success[下载成功]
+    Success --> Preview{打开预览?}
+    
+    Preview -->|是| OpenPlayer[打开播放器]
+    Preview -->|否| End
+    
+    OpenPlayer --> End([结束])
+
+    %% 样式定义
+    classDef startEnd fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
+    classDef process fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    classDef decision fill:#FF9800,stroke:#EF6C00,stroke-width:2px,color:#fff
+    classDef warning fill:#F44336,stroke:#C62828,stroke-width:2px,color:#fff
+    
+    class Start,End startEnd
+    class Input,Parse,GetStream,DownloadBoth,DownloadAudio,DownloadVideo,Merge,Save,Success,OpenPlayer process
+    class CheckBili,CheckLogin,CheckFile,SelectOption,NeedMerge,Preview decision
+    class ShowLogin,ShowExist warning

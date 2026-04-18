@@ -1,0 +1,88 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#E3F2FD', 'primaryTextColor': '#1565C0', 'primaryBorderColor': '#1976D2', 'lineColor': '#424242', 'secondaryColor': '#E8F5E9', 'tertiaryColor': '#FFF3E0', 'fontFamily': 'Inter, Microsoft YaHei, sans-serif', 'fontSize': '14px'}}}%%
+
+flowchart LR
+    subgraph UserInput["👤 用户输入"]
+        direction TB
+        URL[视频URL]
+        PATH[保存路径]
+        OPTIONS[下载选项]
+    end
+
+    subgraph DataFlow["📊 数据流转"]
+        direction TB
+        
+        subgraph ParseFlow["🔍 解析数据流"]
+            direction TB
+            P1[URL] --> P2[VideoParser]
+            P2 --> P3[VideoInfo]
+            P3 --> P4[视频标题]
+            P3 --> P5[视频流地址]
+            P3 --> P6[音频流地址]
+            P3 --> P7[流质量信息]
+        end
+        
+        subgraph DownloadFlow["⬇️ 下载数据流"]
+            direction TB
+            D1[VideoInfo + Options] --> D2[DownloadManager]
+            D2 --> D3[视频流数据]
+            D2 --> D4[音频流数据]
+            D3 --> D5[合并处理]
+            D4 --> D5
+            D5 --> D6[输出文件]
+        end
+        
+        subgraph ProgressFlow["📈 进度数据流"]
+            direction TB
+            PR1[下载进度] --> PR2[ProgressReporter]
+            PR3[下载速度] --> PR4[SpeedReporter]
+            PR5[状态信息] --> PR6[StatusReporter]
+            PR2 --> PR7[UI更新]
+            PR4 --> PR7
+            PR6 --> PR7
+        end
+        
+        subgraph ConfigFlow["⚙️ 配置数据流"]
+            direction TB
+            C1[用户设置] --> C2[ConfigManager]
+            C2 --> C3[config.json]
+            C3 --> C4[应用启动加载]
+            C4 --> C5[ViewModel属性]
+        end
+    end
+
+    subgraph Output["📁 输出"]
+        direction TB
+        FILE[下载文件]
+        LOG[操作日志]
+        INDEX[下载索引]
+    end
+
+    %% 连接
+    URL --> ParseFlow
+    PATH --> DownloadFlow
+    OPTIONS --> DownloadFlow
+    
+    ParseFlow --> DownloadFlow
+    DownloadFlow --> ProgressFlow
+    DownloadFlow --> FILE
+    DownloadFlow --> INDEX
+    ProgressFlow --> LOG
+
+    %% 样式定义 - 现代化配色
+    classDef input fill:#E3F2FD,stroke:#1976D2,stroke-width:2px,color:#0D47A1
+    classDef parse fill:#E8F5E9,stroke:#388E3C,stroke-width:2px,color:#1B5E20
+    classDef download fill:#FFF3E0,stroke:#F57C00,stroke-width:2px,color:#E65100
+    classDef progress fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    classDef config fill:#E0F2F1,stroke:#00796B,stroke-width:2px,color:#004D40
+    classDef output fill:#FCE4EC,stroke:#C2185B,stroke-width:2px,color:#880E4F
+    
+    class URL,PATH,OPTIONS input
+    class P1,P2,P3,P4,P5,P6,P7 parse
+    class D1,D2,D3,D4,D5,D6 download
+    class PR1,PR2,PR3,PR4,PR5,PR6,PR7 progress
+    class C1,C2,C3,C4,C5 config
+    class FILE,LOG,INDEX output
+    class ParseFlow parse
+    class DownloadFlow download
+    class ProgressFlow progress
+    class ConfigFlow config

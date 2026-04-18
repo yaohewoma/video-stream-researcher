@@ -1,0 +1,59 @@
+%% 简化版架构图 - 只展示核心逻辑
+%% 使用 Mermaid 语法
+
+flowchart TB
+    subgraph 用户界面["用户界面 (UI)"]
+        A[用户输入视频URL]
+        B[选择保存路径]
+        C[点击开始下载]
+    end
+
+    subgraph 核心逻辑["核心逻辑 (Core Logic)"]
+        D{检查URL}
+        D1[是B站视频?] --> D2{已登录?}
+        D2 -->|否| D3[提示登录]
+        D2 -->|是| E
+        D -->|普通视频| E
+        
+        E{文件已存在?}
+        E -->|是| F[提示已存在]
+        E -->|否| G[解析视频信息]
+        
+        G --> H[获取视频流地址]
+        H --> I[开始下载]
+        
+        I --> J{下载选项}
+        J -->|完整视频| K[下载视频+音频]
+        J -->|仅音频| L[只下载音频]
+        J -->|仅视频| M[只下载视频]
+        
+        K --> N{需要合并?}
+        N -->|是| O[合并音视频]
+        N -->|否| P[保存文件]
+        O --> P
+        
+        L --> P
+        M --> P
+    end
+
+    subgraph 输出结果["输出结果"]
+        Q[下载完成]
+        R[打开预览]
+    end
+
+    %% 流程连接
+    A --> B --> C --> D
+    D3 --> A
+    F --> C
+    P --> Q --> R
+
+    %% 样式
+    classDef user fill:#E3F2FD,stroke:#1976D2,stroke-width:2px,color:#0D47A1
+    classDef logic fill:#FFF3E0,stroke:#F57C00,stroke-width:2px,color:#E65100
+    classDef decision fill:#FFEBEE,stroke:#E53935,stroke-width:2px,color:#B71C1C
+    classDef output fill:#E8F5E9,stroke:#43A047,stroke-width:2px,color:#1B5E20
+
+    class A,B,C user
+    class D,D1,D2,E,J,N decision
+    class D3,G,H,I,K,L,M,N,O,P logic
+    class F,Q,R output

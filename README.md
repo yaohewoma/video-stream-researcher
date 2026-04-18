@@ -29,7 +29,7 @@ By using this software, you agree to the following terms:
 - 🔍 **Multi-Platform Support** - Parse and download from Bilibili, Kuaishou, Miyoushe, and more
 - 🎬 **Video Preview** - Preview videos and select specific segments
 - 🔐 **Bilibili Login** - Login support for accessing high-quality videos
-- 🔧 **Merge Modes** - FFmpeg / Mp4Merger (Built-in MP4 merger)
+- 🔧 **Built-in MP4 Merger** - Pure C# implementation, no FFmpeg dependency
 - 🌍 **Multi-Language** - English, 简体中文, Русский
 - ⚡ **High Performance** - Async I/O, 1MB buffer, streaming processing
 - 🛡️ **Security** - Path traversal protection, filename sanitization

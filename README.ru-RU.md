@@ -1,6 +1,6 @@
 # Исследователь Видеопотоков
 
-![Версия](https://img.shields.io/badge/версия-1.1-blue.svg?style=flat-square)
+![Версия](https://img.shields.io/badge/версия-2.0-blue.svg?style=flat-square)
 ![.NET](https://img.shields.io/badge/.NET-10.0-512BD4.svg?style=flat-square&logo=dotnet)
 ![Avalonia](https://img.shields.io/badge/Avalonia-11.0+-8B00FF.svg?style=flat-square)
 ![Платформа](https://img.shields.io/badge/платформа-Windows%2010%2F11-0078D6.svg?style=flat-square&logo=windows)

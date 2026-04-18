@@ -1,6 +1,6 @@
 # 视频流研究器
 
-![版本](https://img.shields.io/badge/版本-2.0-blue.svg?style=flat-square)
+![版本](https://img.shields.io/badge/版本-1.1-blue.svg?style=flat-square)
 ![.NET](https://img.shields.io/badge/.NET-10.0-512BD4.svg?style=flat-square&logo=dotnet)
 ![Avalonia](https://img.shields.io/badge/Avalonia-11.0+-8B00FF.svg?style=flat-square)
 ![平台](https://img.shields.io/badge/平台-Windows%2010%2F11-0078D6.svg?style=flat-square&logo=windows)

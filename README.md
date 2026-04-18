@@ -136,6 +136,7 @@ For detailed architecture, see [Architecture Documentation](./Docs/EN/Architectu
 - [Code Review Report](./Docs/EN/CodeReviewReport.md)
 - [Multilingual Support](./Docs/Multilingual_Support.md)
 - [Flowcharts](./Docs/Flowchart/)
+- [Build Instructions](./Releases/BUILD.md)
 
 ---
 

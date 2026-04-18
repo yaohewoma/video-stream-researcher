@@ -136,6 +136,7 @@
 - [Отчет об Обзоре Кода](./Docs/RU/CodeReviewReport.md)
 - [Многоязычная Поддержка](./Docs/Multilingual_Support.md)
 - [Диаграммы](./Docs/Flowchart/)
+- [Инструкции по Сборке](./Releases/BUILD.ru-RU.md)
 
 ---
 

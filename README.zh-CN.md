@@ -136,6 +136,7 @@
 - [代码审查报告](./Docs/ZH/CodeReviewReport.md)
 - [多语言支持](./Docs/Multilingual_Support.md)
 - [流程图](./Docs/Flowchart/)
+- [编译说明](./Releases/BUILD.zh-CN.md)
 
 ---
 

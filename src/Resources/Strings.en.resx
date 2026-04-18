@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- Window Title -->
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Video Stream Researcher</value>
+  </data>
+  
+  <!-- UI Controls -->
+  <data name="LabelVideoUrl" xml:space="preserve">
+    <value>Video URL:</value>
+  </data>
+  <data name="LabelSavePath" xml:space="preserve">
+    <value>Save Path:</value>
+  </data>
+  <data name="ButtonBrowse" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="ButtonStartProcessing" xml:space="preserve">
+    <value>Start Processing</value>
+  </data>
+  <data name="TooltipToggleTheme" xml:space="preserve">
+    <value>Toggle Theme</value>
+  </data>
+  <data name="TooltipCancelDownload" xml:space="preserve">
+    <value>Cancel Download</value>
+  </data>
+  
+  <!-- Download Modes -->
+  <data name="RadioButtonAll" xml:space="preserve">
+    <value>Merge</value>
+  </data>
+  <data name="RadioButtonNoMerge" xml:space="preserve">
+    <value>No Merge</value>
+  </data>
+  <data name="RadioButtonAudioOnly" xml:space="preserve">
+    <value>Audio Only</value>
+  </data>
+  <data name="RadioButtonVideoOnly" xml:space="preserve">
+    <value>Video Only</value>
+  </data>
+  
+  <!-- Status Texts -->
+  <data name="InitialSpeedText" xml:space="preserve">
+    <value>Current Speed: 0 KB/s</value>
+  </data>
+  <data name="InitialStatusText" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="StatusReady" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="StatusStartProcessing" xml:space="preserve">
+    <value>Starting...</value>
+  </data>
+  <data name="StatusVideoStreamAcquiring" xml:space="preserve">
+    <value>Acquiring video stream...</value>
+  </data>
+  <data name="StatusAudioStreamAcquiring" xml:space="preserve">
+    <value>Acquiring audio stream...</value>
+  </data>
+  <data name="StatusMerging" xml:space="preserve">
+    <value>Merging...</value>
+  </data>
+  <data name="StatusProcessingCompleted" xml:space="preserve">
+    <value>Processing Completed!</value>
+  </data>
+  <data name="StatusProcessingFailed" xml:space="preserve">
+    <value>Processing Failed</value>
+  </data>
+  
+  <!-- Log Messages -->
+  <data name="LogPleaseEnterUrl" xml:space="preserve">
+    <value>Please enter video URL</value>
+  </data>
+  <data name="LogPleaseSelectSavePath" xml:space="preserve">
+    <value>Please select save path</value>
+  </data>
+  <data name="LogStartParsingVideo" xml:space="preserve">
+    <value>Start parsing video: {0}</value>
+  </data>
+  <data name="LogParsingFailed" xml:space="preserve">
+    <value>Video parsing failed</value>
+  </data>
+  <data name="LogVideoStreamUrl" xml:space="preserve">
+    <value>Video Stream URL: {0}</value>
+  </data>
+  <data name="LogAudioStreamUrl" xml:space="preserve">
+    <value>Audio Stream URL: {0}</value>
+  </data>
+  <data name="LogConfirmProcessing" xml:space="preserve">
+    <value>💡 Click [Start Processing] again to confirm</value>
+  </data>
+  <data name="LogStartProcessing" xml:space="preserve">
+    <value>Start processing: {0}</value>
+  </data>
+  <data name="LogProcessingCompleted" xml:space="preserve">
+    <value>Processing completed! File size: {0}</value>
+  </data>
+  <data name="LogProcessingTime" xml:space="preserve">
+    <value>Processing time: {0}</value>
+  </data>
+  <data name="LogProcessingFailed" xml:space="preserve">
+    <value>Processing failed: {0}</value>
+  </data>
+  
+  <!-- Login Prompt -->
+  <data name="LoginPrompt" xml:space="preserve">
+    <value>Tip: Login to Bilibili to get higher resolution videos~ Type 'bili' in the input box to start login</value>
+  </data>
+  
+  <!-- Language Switch -->
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="LanguageChinese" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="LanguageEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="LanguageRussian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+</root>

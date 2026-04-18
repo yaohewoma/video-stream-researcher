@@ -1,0 +1,101 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="video_stream_researcher.UI.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+    
+    <Application.Resources>
+        <!-- 窗口和控件文本 -->
+        <x:String x:Key="WindowTitle">视频流研究工具</x:String>
+        <x:String x:Key="LabelVideoUrl">视频URL:</x:String>
+        <x:String x:Key="LabelSavePath">保存路径:</x:String>
+        <x:String x:Key="ButtonBrowse">浏览...</x:String>
+        <x:String x:Key="ButtonStartProcessing">开始处理</x:String>
+        <x:String x:Key="TooltipToggleTheme">切换主题</x:String>
+        <x:String x:Key="TooltipCancelDownload">取消下载</x:String>
+        <x:String x:Key="RadioButtonAll">合并</x:String>
+        <x:String x:Key="RadioButtonNoMerge">不合并</x:String>
+        <x:String x:Key="RadioButtonAudioOnly">仅音频</x:String>
+        <x:String x:Key="RadioButtonVideoOnly">仅视频</x:String>
+        <x:String x:Key="InitialSpeedText">当前速度: 0 KB/s</x:String>
+        <x:String x:Key="InitialStatusText">就绪</x:String>
+        
+        <!-- 法律声明 -->
+        <x:String x:Key="LegalHeader">📢 法律声明与免责条款</x:String>
+        <x:String x:Key="LegalLine1">1. 本工具仅用于技术研究和学习目的</x:String>
+        <x:String x:Key="LegalLine2">2. 请遵守相关法律法规和网站服务条款</x:String>
+        <x:String x:Key="LegalLine3">3. 视频内容版权归原作者和平台所有</x:String>
+        <x:String x:Key="LegalLine4">4. 请在下载后24小时内删除，不得用于商业用途</x:String>
+        <x:String x:Key="LegalLine5">5. 开发者不对用户的违法行为承担责任</x:String>
+        <x:String x:Key="LegalLine6">6. 如有侵权请联系删除相关内容</x:String>
+        <x:String x:Key="LegalFooter">💡 使用前请仔细阅读并遵守上述条款</x:String>
+        <x:String x:Key="LegalSeparator">=====================================</x:String>
+        
+        <!-- 日志消息 -->
+        <x:String x:Key="LogPleaseEnterUrl">请输入视频URL</x:String>
+        <x:String x:Key="LogPleaseSelectSavePath">请选择保存路径</x:String>
+        <x:String x:Key="LogStartParsingVideo">开始解析视频: {0}</x:String>
+        <x:String x:Key="LogParsingFailed">视频解析失败</x:String>
+        <x:String x:Key="LogVideoStreamUrl">视频流URL: {0}</x:String>
+        <x:String x:Key="LogAudioStreamUrl">音频流URL: {0}</x:String>
+        <x:String x:Key="LogConfirmProcessing">💡 再次点击【开始处理】按钮确认继续处理</x:String>
+        <x:String x:Key="LogStartProcessing">开始处理: {0}</x:String>
+        <x:String x:Key="LogProcessingCompleted">处理完成！实际文件大小: {0}</x:String>
+        <x:String x:Key="LogProcessingTime">处理时间: {0}</x:String>
+        <x:String x:Key="LogProcessingFailed">处理失败: {0}</x:String>
+        
+        <!-- 状态消息 -->
+        <x:String x:Key="StatusReady">就绪</x:String>
+        <x:String x:Key="StatusStartProcessing">开始处理...</x:String>
+        <x:String x:Key="StatusVideoStreamAcquiring">视频流正在获取中...</x:String>
+        <x:String x:Key="StatusAudioStreamAcquiring">音频流正在获取中...</x:String>
+        <x:String x:Key="StatusMerging">正在处理合并中...</x:String>
+        <x:String x:Key="StatusProcessingCompleted">处理完成！</x:String>
+        <x:String x:Key="StatusProcessingFailed">处理失败</x:String>
+        
+        <!-- 选项模式 -->
+        <x:String x:Key="LogEnterOptionMode">🔧 已进入设置模式</x:String>
+        <x:String x:Key="LogOptionMenu">📋 可用选项：</x:String>
+        <x:String x:Key="LogOption1">1. FFmpeg 开关管理</x:String>
+        <x:String x:Key="LogOption2">2. MP4 合并模式设置</x:String>
+        <x:String x:Key="LogOption3">3. 功能3（待开发）</x:String>
+        <x:String x:Key="LogOption4">4. 功能4（待开发）</x:String>
+        <x:String x:Key="LogOptionExitHint">🔙 提示：按回车键即可退出设置模式</x:String>
+        <x:String x:Key="LogOptionPrompt">请输入选项编号，然后点击开始下载确认</x:String>
+        <x:String x:Key="LogExitOptionMode">🔙 已退出设置模式</x:String>
+        
+        <!-- FFmpeg 菜单 -->
+        <x:String x:Key="LogFFmpegMenu">⚙️ FFmpeg 开关管理</x:String>
+        <x:String x:Key="LogFFmpegOption1">1. 开启 FFmpeg（作为Mp4Merger备用）</x:String>
+        <x:String x:Key="LogFFmpegOption2">2. 关闭 FFmpeg</x:String>
+        <x:String x:Key="LogFFmpegCurrentStatus">当前状态：{0}</x:String>
+        <x:String x:Key="LogFFmpegEnabled">已开启</x:String>
+        <x:String x:Key="LogFFmpegDisabled">已关闭</x:String>
+        <x:String x:Key="LogFFmpegEnabledSuccess">✅ FFmpeg 已开启，将作为Mp4Merger的备用选项</x:String>
+        <x:String x:Key="LogFFmpegDisabledSuccess">❌ FFmpeg 已关闭，系统将仅使用Mp4Merger库</x:String>
+        <x:String x:Key="LogFFmpegInfo">⚡ 系统默认使用Mp4Merger库，仅在特定情况下尝试使用FFmpeg作为备用</x:String>
+        
+        <!-- 合并模式菜单 -->
+        <x:String x:Key="LogMergeModeMenu">⚙️ MP4 合并模式设置</x:String>
+        <x:String x:Key="LogMergeModeOption1">1. 非分片模式 - 生成标准MP4文件，兼容性更好，支持所有播放器</x:String>
+        <x:String x:Key="LogMergeModeOption2">2. 分片模式 - 保持原始分片MP4格式，合并速度更快</x:String>
+        <x:String x:Key="LogMergeModeOption3">3. 我全都要哦 - 同时生成两种格式，自动避免文件命名冲突</x:String>
+        <x:String x:Key="LogMergeModeCurrent">当前模式：{0}</x:String>
+        <x:String x:Key="LogMergeModeNonFragmented">非分片模式</x:String>
+        <x:String x:Key="LogMergeModeFragmented">分片模式</x:String>
+        <x:String x:Key="LogMergeModeBoth">我全都要哦</x:String>
+        <x:String x:Key="LogMergeModeNonFragmentedSuccess">✅ 已设置为非分片模式，生成标准MP4文件，兼容性更好</x:String>
+        <x:String x:Key="LogMergeModeFragmentedSuccess">✅ 已设置为分片模式，合并速度更快</x:String>
+        <x:String x:Key="LogMergeModeBothSuccess">✅ 已设置为'我全都要哦'模式，将同时生成两种格式</x:String>
+        
+        <!-- 通用消息 -->
+        <x:String x:Key="LogInvalidOption">❓ 无效选项，请输入 {0}-{1} 之间的数字</x:String>
+        <x:String x:Key="LogFunctionUnderDevelopment">🔄 功能{0}（待开发）</x:String>
+        
+
+    </Application.Resources>
+</Application>

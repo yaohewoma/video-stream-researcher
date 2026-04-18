@@ -1,0 +1,11 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="video_stream_researcher.Controls.RangeSeekBar">
+  <Canvas x:Name="Root" Background="Transparent" Height="34">
+    <Rectangle x:Name="Track" Height="3" Fill="#DDFFFFFF" />
+    <Rectangle x:Name="Selection" Height="5" Fill="#66FFFFFF" />
+    <Ellipse x:Name="Playhead" Width="12" Height="12" Fill="#FFB46A2A" />
+    <Border x:Name="StartThumb" Width="4" Height="22" Background="#FFFFFFFF" CornerRadius="2" />
+    <Border x:Name="EndThumb" Width="4" Height="22" Background="#FFFFFFFF" CornerRadius="2" />
+  </Canvas>
+</UserControl>

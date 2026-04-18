@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <!-- 窗口标题 -->
+  <data name="WindowTitle" xml:space="preserve">
+    <value>视频流解析工具</value>
+  </data>
+  <!-- 语言选择 -->
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>语言：</value>
+  </data>
+  <!-- 视频URL -->
+  <data name="LabelVideoUrl" xml:space="preserve">
+    <value>视频链接：</value>
+  </data>
+  <!-- 保存路径 -->
+  <data name="LabelSavePath" xml:space="preserve">
+    <value>保存路径：</value>
+  </data>
+  <!-- 按钮 -->
+  <data name="ButtonBrowse" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="ButtonStartProcessing" xml:space="preserve">
+    <value>开始处理</value>
+  </data>
+  <!-- 单选按钮 -->
+  <data name="RadioButtonAll" xml:space="preserve">
+    <value>下载全部</value>
+  </data>
+  <data name="RadioButtonNoMerge" xml:space="preserve">
+    <value>不合并</value>
+  </data>
+  <data name="RadioButtonAudioOnly" xml:space="preserve">
+    <value>仅音频</value>
+  </data>
+  <data name="RadioButtonVideoOnly" xml:space="preserve">
+    <value>仅视频</value>
+  </data>
+  <!-- 复选框 -->
+  <data name="CheckBoxPreviewEdit" xml:space="preserve">
+    <value>预览编辑</value>
+  </data>
+  <data name="CheckBoxKeepOriginal" xml:space="preserve">
+    <value>保留原文件</value>
+  </data>
+  <data name="CheckBoxAutoPreview" xml:space="preserve">
+    <value>下载后自动预览</value>
+  </data>
+  <!-- 文本块 -->
+  <data name="TextBlockSegmentCount" xml:space="preserve">
+    <value>分段数：</value>
+  </data>
+  <data name="TextBlockHlsOnly" xml:space="preserve">
+    <value>（仅HLS）</value>
+  </data>
+  <!-- 提示文本 -->
+  <data name="TooltipToggleTheme" xml:space="preserve">
+    <value>切换主题</value>
+  </data>
+  <data name="TooltipCancelDownload" xml:space="preserve">
+    <value>取消下载</value>
+  </data>
+  <data name="LoginPrompt" xml:space="preserve">
+    <value>提示：登录B站账号可以获取高清视频。输入 'bili' 开始登录流程。</value>
+  </data>
+  <data name="InitialSpeedText" xml:space="preserve">
+    <value>当前速度: 0 MB/s</value>
+  </data>
+  <!-- 状态文本 -->
+  <data name="StatusReady" xml:space="preserve">
+    <value>就绪</value>
+  </data>
+  <data name="StatusParsing" xml:space="preserve">
+    <value>正在解析...</value>
+  </data>
+  <data name="StatusDownloading" xml:space="preserve">
+    <value>正在下载...</value>
+  </data>
+  <data name="StatusCompleted" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="StatusError" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <!-- 消息 -->
+  <data name="MessageUrlEmpty" xml:space="preserve">
+    <value>请输入视频链接</value>
+  </data>
+  <data name="MessageParseError" xml:space="preserve">
+    <value>解析失败</value>
+  </data>
+  <data name="MessageDownloadError" xml:space="preserve">
+    <value>下载失败</value>
+  </data>
+  <data name="MessageCopySuccess" xml:space="preserve">
+    <value>已复制到剪贴板</value>
+  </data>
+</root>

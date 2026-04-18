@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- Заголовок окна -->
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Исследователь видеопотоков</value>
+  </data>
+  
+  <!-- Элементы управления -->
+  <data name="LabelVideoUrl" xml:space="preserve">
+    <value>URL видео:</value>
+  </data>
+  <data name="LabelSavePath" xml:space="preserve">
+    <value>Путь сохранения:</value>
+  </data>
+  <data name="ButtonBrowse" xml:space="preserve">
+    <value>Обзор...</value>
+  </data>
+  <data name="ButtonStartProcessing" xml:space="preserve">
+    <value>Начать обработку</value>
+  </data>
+  <data name="TooltipToggleTheme" xml:space="preserve">
+    <value>Переключить тему</value>
+  </data>
+  <data name="TooltipCancelDownload" xml:space="preserve">
+    <value>Отменить загрузку</value>
+  </data>
+  
+  <!-- Режимы загрузки -->
+  <data name="RadioButtonAll" xml:space="preserve">
+    <value>Объединить</value>
+  </data>
+  <data name="RadioButtonNoMerge" xml:space="preserve">
+    <value>Не объединять</value>
+  </data>
+  <data name="RadioButtonAudioOnly" xml:space="preserve">
+    <value>Только аудио</value>
+  </data>
+  <data name="RadioButtonVideoOnly" xml:space="preserve">
+    <value>Только видео</value>
+  </data>
+  
+  <!-- Тексты статуса -->
+  <data name="InitialSpeedText" xml:space="preserve">
+    <value>Текущая скорость: 0 КБ/с</value>
+  </data>
+  <data name="InitialStatusText" xml:space="preserve">
+    <value>Готов</value>
+  </data>
+  <data name="StatusReady" xml:space="preserve">
+    <value>Готов</value>
+  </data>
+  <data name="StatusStartProcessing" xml:space="preserve">
+    <value>Начало обработки...</value>
+  </data>
+  <data name="StatusVideoStreamAcquiring" xml:space="preserve">
+    <value>Получение видеопотока...</value>
+  </data>
+  <data name="StatusAudioStreamAcquiring" xml:space="preserve">
+    <value>Получение аудиопотока...</value>
+  </data>
+  <data name="StatusMerging" xml:space="preserve">
+    <value>Объединение...</value>
+  </data>
+  <data name="StatusProcessingCompleted" xml:space="preserve">
+    <value>Обработка завершена!</value>
+  </data>
+  <data name="StatusProcessingFailed" xml:space="preserve">
+    <value>Ошибка обработки</value>
+  </data>
+  
+  <!-- Сообщения журнала -->
+  <data name="LogPleaseEnterUrl" xml:space="preserve">
+    <value>Пожалуйста, введите URL видео</value>
+  </data>
+  <data name="LogPleaseSelectSavePath" xml:space="preserve">
+    <value>Пожалуйста, выберите путь сохранения</value>
+  </data>
+  <data name="LogStartParsingVideo" xml:space="preserve">
+    <value>Начало анализа видео: {0}</value>
+  </data>
+  <data name="LogParsingFailed" xml:space="preserve">
+    <value>Ошибка анализа видео</value>
+  </data>
+  <data name="LogVideoStreamUrl" xml:space="preserve">
+    <value>URL видеопотока: {0}</value>
+  </data>
+  <data name="LogAudioStreamUrl" xml:space="preserve">
+    <value>URL аудиопотока: {0}</value>
+  </data>
+  <data name="LogConfirmProcessing" xml:space="preserve">
+    <value>💡 Нажмите [Начать обработку] еще раз для подтверждения</value>
+  </data>
+  <data name="LogStartProcessing" xml:space="preserve">
+    <value>Начало обработки: {0}</value>
+  </data>
+  <data name="LogProcessingCompleted" xml:space="preserve">
+    <value>Обработка завершена! Размер файла: {0}</value>
+  </data>
+  <data name="LogProcessingTime" xml:space="preserve">
+    <value>Время обработки: {0}</value>
+  </data>
+  <data name="LogProcessingFailed" xml:space="preserve">
+    <value>Ошибка обработки: {0}</value>
+  </data>
+  
+  <!-- Подсказка входа -->
+  <data name="LoginPrompt" xml:space="preserve">
+    <value>Совет: Войдите в Bilibili для получения видео высокого разрешения~ Введите 'bili' в поле ввода для начала входа</value>
+  </data>
+  
+  <!-- Переключение языка -->
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Язык:</value>
+  </data>
+  <data name="LanguageChinese" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="LanguageEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="LanguageRussian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+</root>

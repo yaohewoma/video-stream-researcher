@@ -142,7 +142,7 @@ For detailed architecture, see [Architecture Documentation](./Docs/EN/Architectu
 
 ## 🔄 Version History
 
-### v1.1 (2026-04-18)
+### v2.0 (2026-04-18)
 
 - ✅ Upgraded to .NET 10.0
 - ✅ Multi-language support (EN/ZH/RU)
